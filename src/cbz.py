@@ -125,9 +125,7 @@ class CBZ:  # pylint: disable=too-few-public-methods
         if files_to_rename is None:
             files_to_rename = {}
 
-        to_delete = []
-        to_delete.extend([str(file).lower() for file in files_to_delete])
-        to_delete.extend([files_to_rename.get(str(file[0]).lower(), str(file[0]).lower()) for file in files_to_add])
+        to_delete = [str(file).lower() for file in files_to_delete]
 
         count = len(self._cbz.infolist()) + len(files_to_add)
 

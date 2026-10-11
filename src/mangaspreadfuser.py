@@ -249,6 +249,10 @@ class MangaSpreadFuser(QApplication):  # pylint: disable=too-few-public-methods
         files_to_rename: dict[str, str] | None = None
         if self._renumber:
             files_to_rename = self._create_to_rename_filelist(cbz, spreads, files_to_delete, self._min_width)
+        else:
+            if files_to_delete is None:
+                files_to_delete = []
+            files_to_delete.extend(str(file[0]).lower() for file in files_to_add)
 
         new_filename = cbz.get_path().parent / (cbz.get_path().stem + "_fused" + cbz.get_path().suffix)
         print(f"Writing to {new_filename}...")

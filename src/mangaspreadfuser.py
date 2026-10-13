@@ -77,8 +77,12 @@ class MangaSpreadFuser(QApplication):  # pylint: disable=too-few-public-methods
                     print(f"No spread candidates in {file}...")
                     return
 
+                set_index = 0
+                if len(spread_candidates_list) > 1:
+                    set_index = 0 if len(spread_candidates_list[0]) < len(spread_candidates_list[1]) else 1
+
                 spread_candidate_set: dict[str, Any] = {
-                    "set_index": 0,
+                    "set_index": set_index,
                     "candidates": spread_candidates_list
                 }
 
